@@ -8,20 +8,22 @@ import "./index.css";
 
 export default function App() {
   return (
-    <AntdProvider>
-      <BrowserRouter>
-        <AuthProvider>
-          <Toaster />
-          <Routes>
-            <Route path="/" element={<Navigate to="/dashboard" />} />
-            <Route path="login" element={<LoginPage />} />
-            <Route path="register" />
-            <Route path="/dashboard" element={<ProtectedRoutes />}>
-              <Route index element={<div>Protected</div>} />
-            </Route>
-          </Routes>
-        </AuthProvider>
-      </BrowserRouter>
-    </AntdProvider>
+    <div className="font-satoshi">
+      <AntdProvider>
+        <BrowserRouter>
+          <AuthProvider>
+            <Toaster />
+            <Routes>
+              <Route path="/" element={<Navigate to="/dashboard" />} />
+              <Route path="login" element={<LoginPage />} />
+              <Route path="register" />
+              <Route path="/dashboard" element={<ProtectedRoutes />}>
+                <Route index element={<div>Protected</div>} />
+              </Route>
+            </Routes>
+          </AuthProvider>
+        </BrowserRouter>
+      </AntdProvider>
+    </div>
   );
 }

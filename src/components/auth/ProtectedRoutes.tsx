@@ -2,13 +2,10 @@ import { useAuth } from "../../hooks/useAuth";
 import { Navigate, Outlet, useLocation } from "react-router";
 
 export default function ProtectedRoutes() {
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, token } = useAuth();
   const location = useLocation();
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!isAuthenticated) {
+  if (!isAuthenticated || !token) {
+    localStorage.removeItem("token");
     return (
       <Navigate
         to={`/login?redirect=${location.pathname}`}

@@ -3,10 +3,9 @@ import {
   LoginResponse,
   RegisterFormValues,
   RegisterResponse,
-  User,
 } from "../../interfaces/auth";
 import { API, getHTTPErrorMessage } from "../../lib/api";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, useSearchParams } from "react-router";
 
@@ -17,24 +16,9 @@ export default function AuthProvider({
 }) {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    checkAuth();
-  }, []);
-
-  const checkAuth = async () => {
-    try {
-      const { data } = await API.get("/auth/check");
-      setUser(data);
-    } catch (error) {
-      setUser(null);
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const [token, setToken] = useState<string | null>(
+    localStorage.getItem("token"),
+  );
 
   const login = async (email: string, password: string) => {
     try {
@@ -42,6 +26,7 @@ export default function AuthProvider({
         data: LoginResponse;
       };
       localStorage.setItem("token", data.token);
+      setToken(data.token);
       const redirect = searchParams.get("redirect");
       if (redirect) {
         navigate(redirect);
@@ -58,7 +43,7 @@ export default function AuthProvider({
   const logout = () => {
     try {
       localStorage.removeItem("token");
-      setUser(null);
+      setToken(null);
     } catch (error) {
       console.error("Logout failed:", error);
     }
@@ -70,6 +55,7 @@ export default function AuthProvider({
         data: RegisterResponse;
       };
       localStorage.setItem("token", data.token);
+      setToken(data.token);
       navigate("/dashboard");
     } catch (error) {
       const errorMsg = getHTTPErrorMessage(error, "Registration failed");
@@ -79,9 +65,8 @@ export default function AuthProvider({
   };
 
   const value = {
-    user,
-    isLoading,
-    isAuthenticated: !!user,
+    token,
+    isAuthenticated: !!token,
     login,
     logout,
     register,

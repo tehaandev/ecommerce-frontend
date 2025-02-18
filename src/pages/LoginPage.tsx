@@ -1,3 +1,9 @@
+import LoginForm from "../components/login/LoginForm";
+
 export default function LoginPage() {
-  return <div className="font-satoshi">LoginPage</div>;
+  return (
+    <main className="flex h-screen w-screen items-center justify-center">
+      <LoginForm />
+    </main>
+  );
 }

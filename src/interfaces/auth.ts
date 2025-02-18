@@ -16,8 +16,7 @@ export interface RegisterResponse {
 }
 
 export interface AuthContextType {
-  user: User | null;
-  isLoading: boolean;
+  token: string | null;
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
