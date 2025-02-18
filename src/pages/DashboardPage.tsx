@@ -6,7 +6,7 @@ import { Search } from "lucide-react";
 
 export default function DashboardPage() {
   const { getAllProducts } = useProducts();
-  const { data } = useQuery({
+  const { data: products } = useQuery({
     queryKey: ["get-all-products"],
     queryFn: async () => {
       return await getAllProducts();
@@ -41,7 +41,7 @@ export default function DashboardPage() {
         </div>
       </div>
       <div>
-        <ProductsTable />
+        <ProductsTable products={products} />
       </div>
     </div>
   );

@@ -1,14 +1,15 @@
 export interface Product {
-  id: string;
+  _id: string;
   sku: string;
   name: string;
   description: string;
   price: number;
   qty: number;
   images: {
-    id: string;
-    url: string;
+    _id: string;
+    imageUri: string;
   }[];
+  thumbnail: string;
 }
 
 export interface ProductFormValues {

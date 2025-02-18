@@ -1,4 +1,4 @@
-import { ProductFormValues } from "../interfaces/product";
+import { Product, ProductFormValues } from "../interfaces/product";
 import { API, getHTTPErrorMessage } from "../lib/api";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
@@ -9,7 +9,7 @@ export const useProducts = () => {
     try {
       const { data } = await API.get("/products");
       console.log("Fetched products:", data);
-      return data;
+      return data as Product[];
     } catch (error) {
       console.error("Failed to fetch products:", error);
       return [];
@@ -41,5 +41,17 @@ export const useProducts = () => {
     }
   };
 
-  return { getAllProducts, createProduct };
+  const deleteProduct = async (productId: string) => {
+    try {
+      // send deelte req to /products with id: productId in req params
+      await API.delete(`/products/${productId}`);
+      toast.success("Product deleted successfully");
+      navigate("/");
+    } catch (error) {
+      toast.error(getHTTPErrorMessage(error, "Failed to delete product"));
+      console.error("Failed to delete product:", error);
+    }
+  };
+
+  return { getAllProducts, createProduct, deleteProduct };
 };
