@@ -9,4 +9,8 @@
 
 @theme {
   --font-satoshi: "Satoshi", "sans-serif";
+  --color-ecommerce-white: #f7f7f7;
+  --color-ecommerce-gray: #969191;
+  --color-ecommerce-black: #162427;
+  --color-ecommerce-blue: #001eb9;
 }

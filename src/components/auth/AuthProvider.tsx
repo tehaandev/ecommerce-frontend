@@ -1,11 +1,11 @@
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 import {
   LoginResponse,
   RegisterFormValues,
   RegisterResponse,
   User,
-} from "../interfaces/auth";
-import { API, getHTTPErrorMessage } from "../lib/api";
+} from "../../interfaces/auth";
+import { API, getHTTPErrorMessage } from "../../lib/api";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate, useSearchParams } from "react-router";
