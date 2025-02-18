@@ -43,7 +43,6 @@ export const useProducts = () => {
 
   const deleteProduct = async (productId: string) => {
     try {
-      // send deelte req to /products with id: productId in req params
       await API.delete(`/products/${productId}`);
       toast.success("Product deleted successfully");
       navigate("/");
