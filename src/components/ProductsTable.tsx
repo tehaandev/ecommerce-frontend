@@ -54,9 +54,15 @@ export default function ProductsTable({ products }: ProductsTableProps) {
         </tr>
       </thead>
       <tbody>
-        {products?.map((product) => (
-          <ProductsTableRow key={product._id} product={product} />
-        ))}
+        {products && products.length > 0 ? (
+          products?.map((product) => (
+            <ProductsTableRow key={product._id} product={product} />
+          ))
+        ) : (
+          <p className="text-ecommerce-gray py-20 text-center">
+            No products found
+          </p>
+        )}
       </tbody>
     </table>
   );
