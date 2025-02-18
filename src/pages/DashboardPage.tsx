@@ -28,7 +28,11 @@ export default function DashboardPage() {
           </div>
         </div>
         <div className="flex items-center justify-end gap-4">
-          <Button type="primary" size="large" className="!rounded-md">
+          <Button
+            href="/add-product"
+            type="primary"
+            size="large"
+            className="!rounded-md">
             New Product
           </Button>
           <Button type="default" size="large" className="!rounded-md">

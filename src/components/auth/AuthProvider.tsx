@@ -31,7 +31,7 @@ export default function AuthProvider({
       if (redirect) {
         navigate(redirect);
       } else {
-        navigate("/dashboard");
+        navigate("/");
       }
     } catch (error) {
       const errorMsg = getHTTPErrorMessage(error, "Login failed");
@@ -56,7 +56,7 @@ export default function AuthProvider({
       };
       localStorage.setItem("token", data.token);
       setToken(data.token);
-      navigate("/dashboard");
+      navigate("/");
     } catch (error) {
       const errorMsg = getHTTPErrorMessage(error, "Registration failed");
       console.error(error);
