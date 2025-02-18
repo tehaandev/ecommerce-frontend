@@ -53,5 +53,12 @@ export const useProducts = () => {
     }
   };
 
-  return { getAllProducts, createProduct, deleteProduct };
+  const filterFavorites = (products: Product[]) => {
+    const favoritesArr = localStorage.getItem("favorites")
+      ? JSON.parse(localStorage.getItem("favorites")!)
+      : [];
+    return products.filter((product) => favoritesArr.includes(product._id));
+  };
+
+  return { getAllProducts, createProduct, deleteProduct, filterFavorites };
 };

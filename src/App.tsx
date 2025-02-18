@@ -4,6 +4,7 @@ import AntdProvider from "./components/ui/AntdProvider";
 import MainLayout from "./components/ui/MainLayout";
 import AddProductPage from "./pages/AddProductPage";
 import DashboardPage from "./pages/DashboardPage";
+import FavoritesPage from "./pages/FavoritesPage";
 import LoginPage from "./pages/LoginPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
@@ -26,6 +27,7 @@ export default function App() {
                 <Route path="/" element={<ProtectedRoutes />}>
                   <Route index element={<DashboardPage />} />
                   <Route path="add-product" element={<AddProductPage />} />
+                  <Route path="favorites" element={<FavoritesPage />} />
                 </Route>
               </Routes>
             </AuthProvider>

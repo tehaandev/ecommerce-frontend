@@ -4,17 +4,18 @@ import { useQuery } from "@tanstack/react-query";
 import { Button, Image, Input } from "antd";
 import { Search } from "lucide-react";
 
-export default function DashboardPage() {
-  const { getAllProducts } = useProducts();
-  const { data: products } = useQuery({
+export default function FavoritesPage() {
+  const { getAllProducts, filterFavorites } = useProducts();
+  const { data: favoriteProducts } = useQuery({
     queryKey: ["get-all-products"],
     queryFn: async () => {
-      return await getAllProducts();
+      const products = await getAllProducts();
+      return filterFavorites(products);
     },
   });
   return (
     <div className="space-y-10">
-      <h1 className="text-3xl font-bold tracking-wider">PRODUCTS</h1>
+      <h1 className="text-3xl font-bold tracking-wider">FAVORITE PRODUCTS</h1>
       <div className="grid grid-cols-2 gap-4">
         <div className="flex items-center gap-4">
           <Input className="!border-none" placeholder="Search for products" />
@@ -35,17 +36,13 @@ export default function DashboardPage() {
             className="!rounded-md">
             New Product
           </Button>
-          <Button
-            href="/favorites"
-            type="default"
-            size="large"
-            className="!rounded-md">
+          <Button type="default" size="large" className="!rounded-md">
             <Image preview={false} src="/starred.svg" />
           </Button>
         </div>
       </div>
       <div>
-        <ProductsTable products={products} />
+        <ProductsTable products={favoriteProducts} />
       </div>
     </div>
   );
