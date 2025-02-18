@@ -15,7 +15,7 @@ export default function ProductsTable({ products }: ProductsTableProps) {
     {
       name: "IMAGE",
       key: "image",
-      className: `${defaultHeaderRowClassName} col-span-4`,
+      className: `${defaultHeaderRowClassName} col-span-2`,
     },
     {
       name: "PRODUCT NAME",
@@ -25,7 +25,7 @@ export default function ProductsTable({ products }: ProductsTableProps) {
     {
       name: "DESCRIPTION",
       key: "description",
-      className: `${defaultHeaderRowClassName} col-span-5`,
+      className: `${defaultHeaderRowClassName} col-span-6`,
     },
     {
       name: "QTY",
@@ -40,7 +40,7 @@ export default function ProductsTable({ products }: ProductsTableProps) {
     {
       name: "ACTIONS",
       key: "actions",
-      className: `${defaultHeaderRowClassName} col-span-2`,
+      className: `${defaultHeaderRowClassName} col-span-3`,
     },
   ];
 
@@ -67,44 +67,32 @@ export default function ProductsTable({ products }: ProductsTableProps) {
       <tbody>
         {products?.map((product) => (
           <tr
-            className="grid grid-cols-20 gap-4 border-b border-b-black/20"
+            className="border-b-ecommerce-gray/30 grid grid-cols-20 gap-4 border-b py-3"
             key={product._id}>
             <td className="col-span-2">{product.sku}</td>
-            <td className="col-span-4">
+            <td className="col-span-2">
               <img
                 src={getThumbnailUrl(product.images, product.thumbnail)}
                 alt={product.name}
-                className="h-32 w-32 object-cover"
+                className="h-16 w-16 object-cover"
               />
             </td>
             <td className="col-span-3">{product.name}</td>
-            <td className="col-span-5">{product.description}</td>
+            <td className="col-span-6">{product.description}</td>
             <td className="col-span-2">{product.qty}</td>
             <td className="col-span-2">${product.price}</td>
-            <td className="col-span-2 grid grid-cols-3 gap-0">
+            <td className="col-span-3">
               <Button
                 onClick={() => deleteProduct(product._id)}
                 type="text"
                 className="!p-2">
-                <Image
-                  preview={false}
-                  src="/delete-icon.svg"
-                  className="!h-10 !w-10"
-                />
+                <Image preview={false} src="/delete-icon.svg" />
               </Button>
               <Button type="text" className="!p-2">
-                <Image
-                  preview={false}
-                  src="/edit-icon.svg"
-                  className="!h-10 !w-10"
-                />
+                <Image preview={false} src="/edit-icon.svg" />
               </Button>
               <Button type="text" className="!p-2">
-                <Image
-                  preview={false}
-                  src="/star.svg"
-                  className="!h-10 !w-10"
-                />
+                <Image preview={false} src="/star.svg" />
               </Button>
             </td>
           </tr>

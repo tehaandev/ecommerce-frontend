@@ -10,6 +10,7 @@ export interface Product {
     imageUri: string;
   }[];
   thumbnail: string;
+  isFavorite?: boolean;
 }
 
 export interface ProductFormValues {
