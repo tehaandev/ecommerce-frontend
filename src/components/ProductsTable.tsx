@@ -1,9 +1,12 @@
 import { useProducts } from "../hooks/useProducts";
 import { ProductsTableProps } from "../interfaces/props";
-import { Button, Image } from "antd";
+import { Button, Image, Modal } from "antd";
+import { useState } from "react";
 
 export default function ProductsTable({ products }: ProductsTableProps) {
   const { deleteProduct } = useProducts();
+  const [deleteModal, setDeleteModal] = useState(true);
+  const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
   const defaultHeaderRowClassName =
     "text-ecommerce-blue py-5 text-left font-black";
   const columns = [
@@ -53,8 +56,47 @@ export default function ProductsTable({ products }: ProductsTableProps) {
     return encodeURI(`${baseUrl}/${thumbnail?.imageUri}`);
   };
 
+  const showDeleteModal = (id: string) => {
+    setSelectedProduct(id);
+    setDeleteModal(true);
+  };
+  const hideDeleteModal = () => {
+    setSelectedProduct(null);
+    setDeleteModal(false);
+  };
+
+  const handleDeleteProduct = async () => {
+    if (selectedProduct) {
+      await deleteProduct(selectedProduct);
+      hideDeleteModal();
+    }
+  };
+
   return (
     <table className="w-full">
+      <Modal
+        centered
+        open={deleteModal}
+        onOk={hideDeleteModal}
+        onCancel={hideDeleteModal}
+        closable
+        footer={[]}>
+        <div className="flex flex-col items-center justify-center space-y-3">
+          <Image src="/alert.svg" preview={false} alt="alert" />
+          <div className="text-center">
+            <h2 className="text-xl font-medium">ARE YOU SURE?</h2>
+            <p>You will not be able to undo this action if you proceed!</p>
+          </div>
+          <div className="flex space-x-4">
+            <Button onClick={hideDeleteModal} type="default">
+              Cancel
+            </Button>
+            <Button onClick={handleDeleteProduct} type="primary">
+              Delete
+            </Button>
+          </div>
+        </div>
+      </Modal>
       <thead>
         <tr className="grid grid-cols-20 gap-4">
           {columns.map((column) => (
@@ -83,7 +125,7 @@ export default function ProductsTable({ products }: ProductsTableProps) {
             <td className="col-span-2">${product.price}</td>
             <td className="col-span-3">
               <Button
-                onClick={() => deleteProduct(product._id)}
+                onClick={() => showDeleteModal(product._id)}
                 type="text"
                 className="!p-2">
                 <Image preview={false} src="/delete-icon.svg" />
