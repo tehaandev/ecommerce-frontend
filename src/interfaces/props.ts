@@ -7,3 +7,7 @@ export interface ProductsTableProps {
 export interface ProductsTableRowProps {
   product: Product;
 }
+
+export interface EditProductFormProps {
+  product: Product;
+}

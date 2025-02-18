@@ -21,3 +21,17 @@ export interface ProductFormValues {
   qty: number;
   images: File[];
 }
+
+export interface EditFormValues {
+  sku: string;
+  name: string;
+  description: string;
+  price: number;
+  qty: number;
+  thumbnail: string;
+  existingImages: {
+    _id: string;
+    imageUri: string;
+  }[];
+  newImages: File[];
+}

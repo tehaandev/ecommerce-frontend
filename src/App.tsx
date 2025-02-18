@@ -4,6 +4,7 @@ import AntdProvider from "./components/ui/AntdProvider";
 import MainLayout from "./components/ui/MainLayout";
 import AddProductPage from "./pages/AddProductPage";
 import DashboardPage from "./pages/DashboardPage";
+import EditProductPage from "./pages/EditProductPage";
 import FavoritesPage from "./pages/FavoritesPage";
 import LoginPage from "./pages/LoginPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -28,6 +29,10 @@ export default function App() {
                   <Route index element={<DashboardPage />} />
                   <Route path="add-product" element={<AddProductPage />} />
                   <Route path="favorites" element={<FavoritesPage />} />
+                  <Route
+                    path="edit-product/:id"
+                    element={<EditProductPage />}
+                  />
                 </Route>
               </Routes>
             </AuthProvider>

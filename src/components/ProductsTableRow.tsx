@@ -2,8 +2,10 @@ import { useProducts } from "../hooks/useProducts";
 import { ProductsTableRowProps } from "../interfaces/props";
 import { Button, Image, Modal } from "antd";
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 export default function ProductsTableRow({ product }: ProductsTableRowProps) {
+  const navigate = useNavigate();
   const { deleteProduct } = useProducts();
   const [deleteModal, setDeleteModal] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -50,6 +52,10 @@ export default function ProductsTableRow({ product }: ProductsTableRowProps) {
       localStorage.setItem("favorites", JSON.stringify([...favoritesArr, id]));
     }
     checkIsFavorite();
+  };
+
+  const handleEditProduct = () => {
+    navigate(`/edit-product/${product._id}`);
   };
   return (
     <>
@@ -98,7 +104,7 @@ export default function ProductsTableRow({ product }: ProductsTableRowProps) {
             className="!p-2">
             <Image preview={false} src="/delete-icon.svg" />
           </Button>
-          <Button type="text" className="!p-2">
+          <Button onClick={handleEditProduct} type="text" className="!p-2">
             <Image preview={false} src="/edit-icon.svg" />
           </Button>
           <Button

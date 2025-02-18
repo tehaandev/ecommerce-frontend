@@ -59,9 +59,11 @@ export default function ProductsTable({ products }: ProductsTableProps) {
             <ProductsTableRow key={product._id} product={product} />
           ))
         ) : (
-          <p className="text-ecommerce-gray py-20 text-center">
-            No products found
-          </p>
+          <tr className="text-ecommerce-gray text-center">
+            <td className="py-20" colSpan={columns.length}>
+              No products found
+            </td>
+          </tr>
         )}
       </tbody>
     </table>
