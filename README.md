@@ -66,6 +66,7 @@ ecommerce-frontend/
 │   ├── vite-env.d.ts             # Vite declarations
 │── .env                          # Environment variables
 │── .gitignore                    # Git ignore file
+│── .prettierrc                   # Prettier config file
 │── eslint.config.js              # ESLint config
 │── env.sample                    # Sample environment variables file
 │── index.html                    # Main HTML file
