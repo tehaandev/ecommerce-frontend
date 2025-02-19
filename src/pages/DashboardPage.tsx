@@ -1,8 +1,8 @@
 import ProductsTable from "../components/ProductsTable";
+import SearchBar from "../components/SearchBar";
 import { useProducts } from "../hooks/useProducts";
 import { useQuery } from "@tanstack/react-query";
-import { Button, Image, Input } from "antd";
-import { Search } from "lucide-react";
+import { Button, Image } from "antd";
 
 export default function DashboardPage() {
   const { getAllProducts } = useProducts();
@@ -16,17 +16,7 @@ export default function DashboardPage() {
     <div className="space-y-10">
       <h1 className="text-3xl font-bold tracking-wider">PRODUCTS</h1>
       <div className="grid grid-cols-2 gap-4">
-        <div className="flex items-center gap-4">
-          <Input className="!border-none" placeholder="Search for products" />
-          <div>
-            <Button
-              icon={<Search size={16} />}
-              type="primary"
-              className="!rounded-full">
-              Search
-            </Button>
-          </div>
-        </div>
+        <SearchBar />
         <div className="flex items-center justify-end gap-4">
           <Button
             href="/add-product"

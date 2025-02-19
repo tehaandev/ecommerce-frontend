@@ -1,5 +1,6 @@
 import { useProducts } from "../hooks/useProducts";
 import { ProductsTableRowProps } from "../interfaces/props";
+import getThumbnailUrl from "../utils/getThumbnailUrl";
 import { Button, Image, Modal } from "antd";
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
@@ -9,14 +10,6 @@ export default function ProductsTableRow({ product }: ProductsTableRowProps) {
   const { deleteProduct } = useProducts();
   const [deleteModal, setDeleteModal] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-  const getThumbnailUrl = (
-    image: { _id: string; imageUri: string }[],
-    thumbnailId: string,
-  ) => {
-    const baseUrl = import.meta.env.VITE_API_URL_STATIC;
-    const thumbnail = image.find((img) => img._id === thumbnailId);
-    return encodeURI(`${baseUrl}/${thumbnail?.imageUri}`);
-  };
 
   const showDeleteModal = () => {
     setDeleteModal(true);

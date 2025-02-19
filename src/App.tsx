@@ -7,6 +7,7 @@ import DashboardPage from "./pages/DashboardPage";
 import EditProductPage from "./pages/EditProductPage";
 import FavoritesPage from "./pages/FavoritesPage";
 import LoginPage from "./pages/LoginPage";
+import ViewProductPage from "./pages/ViewProductPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router";
@@ -29,6 +30,10 @@ export default function App() {
                   <Route index element={<DashboardPage />} />
                   <Route path="add-product" element={<AddProductPage />} />
                   <Route path="favorites" element={<FavoritesPage />} />
+                  <Route
+                    path="view-product/:id"
+                    element={<ViewProductPage />}
+                  />
                   <Route
                     path="edit-product/:id"
                     element={<EditProductPage />}

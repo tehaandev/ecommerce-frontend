@@ -35,3 +35,9 @@ export interface EditFormValues {
   }[];
   newImages: File[];
 }
+
+export interface SuggestedProduct {
+  _id: string;
+  name: string;
+  sku: string;
+}
