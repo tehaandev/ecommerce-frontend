@@ -1,9 +1,10 @@
+import BreadcrumbArrow from "../components/shared/BreadcrumbArrow";
 import { useProducts } from "../hooks/useProducts";
 import constructImageUrl from "../utils/constructImageUrl";
 import getThumbnailUrl from "../utils/getThumbnailUrl";
 import { useQuery } from "@tanstack/react-query";
 import { Image } from "antd";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 
 export default function ViewProductPage() {
   const { getProductById } = useProducts();
@@ -19,12 +20,14 @@ export default function ViewProductPage() {
   return (
     <div className="space-y-10">
       <div className="flex items-center space-x-2">
-        <h1 className="text-3xl font-bold tracking-wider">PRODUCTS</h1>
-        <Image src="/arrow.svg" alt="Breadcrumb arrow" />
+        <Link to={"/"}>
+          <h1 className="text-3xl font-bold tracking-wider">PRODUCTS</h1>
+        </Link>
+        <BreadcrumbArrow />
         <h2 className="text-ecommerce-blue text-xl font-medium">
           View product
         </h2>
-        <Image src="/arrow.svg" alt="Breadcrumb arrow" />
+        <BreadcrumbArrow />
         <h2 className="text-ecommerce-blue text-xl font-medium">
           {product.name}
         </h2>
