@@ -7,6 +7,7 @@ import DashboardPage from "./pages/DashboardPage";
 import EditProductPage from "./pages/EditProductPage";
 import FavoritesPage from "./pages/FavoritesPage";
 import LoginPage from "./pages/LoginPage";
+import SearchPage from "./pages/SearchPage";
 import ViewProductPage from "./pages/ViewProductPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
@@ -38,6 +39,7 @@ export default function App() {
                     path="edit-product/:id"
                     element={<EditProductPage />}
                   />
+                  <Route path="/search" element={<SearchPage />} />
                 </Route>
               </Routes>
             </AuthProvider>

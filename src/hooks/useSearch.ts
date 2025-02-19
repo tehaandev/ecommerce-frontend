@@ -15,8 +15,6 @@ export const useSearch = () => {
   const getSearchSuggestions = async (query: string) => {
     try {
       const { data } = await API.get(`/search/suggestions/${query}`);
-      console.log(data);
-
       return data as SuggestedProduct[];
     } catch (error) {
       console.error("Failed to fetch search suggestions:", error);

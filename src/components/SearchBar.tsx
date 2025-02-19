@@ -3,11 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import { Button, Input } from "antd";
 import { Search } from "lucide-react";
 import { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { useLocation, useNavigate, useSearchParams } from "react-router";
 
 export default function SearchBar() {
   const { getSearchSuggestions } = useSearch();
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState<string>();
   const { data: suggestions } = useQuery({
@@ -24,7 +25,9 @@ export default function SearchBar() {
     if (!searchQuery) return;
     searchParams.set("query", searchQuery);
     setSearchParams(searchParams);
-    navigate(`/search?q=${searchQuery}`);
+    if (!location.pathname.startsWith("/search")) {
+      navigate(`/search/?query=${searchQuery}`);
+    }
   };
   return (
     <div className="flex w-full items-center gap-4">
