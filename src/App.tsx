@@ -1,6 +1,5 @@
 import ProtectedRoutes from "./components/auth/ProtectedRoutes";
 import AntdProvider from "./components/ui/AntdProvider";
-import MainLayout from "./components/ui/MainLayout";
 import AddProductPage from "./pages/AddProductPage";
 import DashboardPage from "./pages/DashboardPage";
 import EditProductPage from "./pages/EditProductPage";
@@ -18,34 +17,26 @@ import "./index.css";
 export default function App() {
   const queryClient = new QueryClient();
   return (
-    <MainLayout>
-      <AntdProvider>
-        <BrowserRouter>
-          <QueryClientProvider client={queryClient}>
-            <Provider store={authStore}>
-              <Toaster />
-              <Routes>
-                <Route path="login" element={<LoginPage />} />
-                <Route path="register" />
-                <Route path="/" element={<ProtectedRoutes />}>
-                  <Route index element={<DashboardPage />} />
-                  <Route path="add-product" element={<AddProductPage />} />
-                  <Route path="favorites" element={<FavoritesPage />} />
-                  <Route
-                    path="view-product/:id"
-                    element={<ViewProductPage />}
-                  />
-                  <Route
-                    path="edit-product/:id"
-                    element={<EditProductPage />}
-                  />
-                  <Route path="/search" element={<SearchPage />} />
-                </Route>
-              </Routes>
-            </Provider>
-          </QueryClientProvider>
-        </BrowserRouter>
-      </AntdProvider>
-    </MainLayout>
+    <AntdProvider>
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <Provider store={authStore}>
+            <Toaster />
+            <Routes>
+              <Route path="login" element={<LoginPage />} />
+              <Route path="register" />
+              <Route path="/" element={<ProtectedRoutes />}>
+                <Route index element={<DashboardPage />} />
+                <Route path="add-product" element={<AddProductPage />} />
+                <Route path="favorites" element={<FavoritesPage />} />
+                <Route path="view-product/:id" element={<ViewProductPage />} />
+                <Route path="edit-product/:id" element={<EditProductPage />} />
+                <Route path="/search" element={<SearchPage />} />
+              </Route>
+            </Routes>
+          </Provider>
+        </QueryClientProvider>
+      </BrowserRouter>
+    </AntdProvider>
   );
 }

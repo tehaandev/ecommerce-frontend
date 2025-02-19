@@ -1,5 +1,6 @@
 import EditProductForm from "../components/product/EditProductForm";
 import BreadcrumbArrow from "../components/shared/BreadcrumbArrow";
+import MainLayout from "../components/ui/MainLayout";
 import { useProducts } from "../hooks/useProducts";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router";
@@ -13,22 +14,28 @@ export default function EditProductPage() {
     enabled: !!id,
   });
   if (isLoading || !product) {
-    return <div>Loading...</div>;
+    return (
+      <MainLayout>
+        <div>Loading...</div>
+      </MainLayout>
+    );
   }
   return (
-    <div className="space-y-10">
-      <div className="flex items-center space-x-2">
-        <div className="text-3xl font-bold tracking-wider">
-          <Link to={"/"}>PRODUCTS</Link>
+    <MainLayout>
+      <div className="space-y-10">
+        <div className="flex items-center space-x-2">
+          <div className="text-3xl font-bold tracking-wider">
+            <Link to={"/"}>PRODUCTS</Link>
+          </div>
+          <BreadcrumbArrow />
+          <h2 className="text-ecommerce-blue text-xl font-medium">
+            Edit product
+          </h2>
         </div>
-        <BreadcrumbArrow />
-        <h2 className="text-ecommerce-blue text-xl font-medium">
-          Edit product
-        </h2>
+        <div className="my-10 w-2/3">
+          <EditProductForm product={product} />
+        </div>
       </div>
-      <div className="my-10 w-2/3">
-        <EditProductForm product={product} />
-      </div>
-    </div>
+    </MainLayout>
   );
 }
