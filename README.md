@@ -25,6 +25,11 @@ npm install
 npm run dev
 ```
 
+## Test Login
+
+- Email: test@email.com
+- Password: password
+
 ## Folder Structure
 
 ```
