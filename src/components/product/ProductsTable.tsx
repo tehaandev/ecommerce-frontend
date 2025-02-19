@@ -1,4 +1,4 @@
-import { ProductsTableProps } from "../interfaces/props";
+import { ProductsTableProps } from "../../interfaces/props";
 import ProductsTableRow from "./ProductsTableRow";
 
 export default function ProductsTable({ products }: ProductsTableProps) {

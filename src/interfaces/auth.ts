@@ -15,14 +15,6 @@ export interface RegisterResponse {
   token: string;
 }
 
-export interface AuthContextType {
-  token: string | null;
-  isAuthenticated: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  logout: () => void;
-  register: (values: RegisterFormValues) => Promise<void>;
-}
-
 export interface LoginResponse {
   message: string;
   token: string;

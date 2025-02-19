@@ -1,5 +1,5 @@
-import ProductsTable from "../components/ProductsTable";
-import SearchBar from "../components/SearchBar";
+import ProductsTable from "../components/product/ProductsTable";
+import SearchBar from "../components/search/SearchBar";
 import MainLayout from "../components/ui/MainLayout";
 import { useProducts } from "../hooks/useProducts";
 import { useQuery } from "@tanstack/react-query";

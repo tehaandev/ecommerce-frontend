@@ -1,4 +1,4 @@
-import { useSearch } from "../hooks/useSearch";
+import { useSearch } from "../../hooks/useSearch";
 import { useQuery } from "@tanstack/react-query";
 import { Button, Input } from "antd";
 import { Search } from "lucide-react";

@@ -1,6 +1,6 @@
-import { useProducts } from "../hooks/useProducts";
-import { ProductsTableRowProps } from "../interfaces/props";
-import getThumbnailUrl from "../utils/getThumbnailUrl";
+import { useProducts } from "../../hooks/useProducts";
+import { ProductsTableRowProps } from "../../interfaces/props";
+import getThumbnailUrl from "../../utils/getThumbnailUrl";
 import { Button, Image, Modal } from "antd";
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router";

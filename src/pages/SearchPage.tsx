@@ -1,4 +1,4 @@
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../components/search/SearchBar";
 import SearchItem from "../components/search/SearchItem";
 import MainLayout from "../components/ui/MainLayout";
 import { useSearch } from "../hooks/useSearch";
