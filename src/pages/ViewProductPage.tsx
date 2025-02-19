@@ -20,9 +20,9 @@ export default function ViewProductPage() {
   return (
     <div className="space-y-10">
       <div className="flex items-center space-x-2">
-        <Link to={"/"}>
-          <h1 className="text-3xl font-bold tracking-wider">PRODUCTS</h1>
-        </Link>
+        <div className="text-3xl font-bold tracking-wider">
+          <Link to={"/"}>PRODUCTS</Link>
+        </div>
         <BreadcrumbArrow />
         <h2 className="text-ecommerce-blue text-xl font-medium">
           View product
