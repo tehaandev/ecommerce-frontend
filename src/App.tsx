@@ -1,4 +1,3 @@
-import AuthProvider from "./components/auth/AuthProvider";
 import ProtectedRoutes from "./components/auth/ProtectedRoutes";
 import AntdProvider from "./components/ui/AntdProvider";
 import MainLayout from "./components/ui/MainLayout";
@@ -9,20 +8,21 @@ import FavoritesPage from "./pages/FavoritesPage";
 import LoginPage from "./pages/LoginPage";
 import SearchPage from "./pages/SearchPage";
 import ViewProductPage from "./pages/ViewProductPage";
+import { authStore } from "./store/authStore";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
+import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router";
 import "./index.css";
 
 export default function App() {
   const queryClient = new QueryClient();
-
   return (
     <MainLayout>
       <AntdProvider>
         <BrowserRouter>
           <QueryClientProvider client={queryClient}>
-            <AuthProvider>
+            <Provider store={authStore}>
               <Toaster />
               <Routes>
                 <Route path="login" element={<LoginPage />} />
@@ -42,7 +42,7 @@ export default function App() {
                   <Route path="/search" element={<SearchPage />} />
                 </Route>
               </Routes>
-            </AuthProvider>
+            </Provider>
           </QueryClientProvider>
         </BrowserRouter>
       </AntdProvider>
